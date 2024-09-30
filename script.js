@@ -3,7 +3,7 @@ let playerScore = 0;
 let aiScore = 0;
 let draws = 0;
 
-// Grab all the elements we need, let's do this!
+// Grab all the elements we need
 let resultText = document.getElementById('result');
 let playerRollText = document.getElementById('playerRollText');
 let aiRollText = document.getElementById('aiRollText');
@@ -22,7 +22,7 @@ document.getElementById('rollButton').addEventListener('click', function() {
   let playerRoll = rollDice();
   let aiRoll = rollDice();
 
-  // Show what we rolled
+  // Show result of what we rolled
   playerRollText.innerText = 'Player rolled: ' + playerRoll;
   aiRollText.innerText = 'AI rolled: ' + aiRoll;
 
