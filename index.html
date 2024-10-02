@@ -4,28 +4,46 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Dice Rolling Game</title>
+  <style>
+    #gifContainer {
+      display: none; /* Initially hidden */
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(255, 255, 255, 0.8); /* Semi-transparent background */
+      z-index: 100; /* Make sure it's on top */
+      justify-content: center; /* Center the GIF */
+      align-items: center; /* Center the GIF */
+    }
+    #gif {
+      max-width: 80%; /* Limit the size of the GIF */
+      max-height: 80%;
+    }
+  </style>
 </head>
 <body>
 <h1>Dice Rolling Game</h1>
-
-<!-- Where the magic happens -->
-<div id="result">Hello Ben and welcome to my dice generator, sorry for the wait and hope you enjoy!
-  Press the button to roll the dice!</div>
-
-<!-- Player and AI rolls -->
+<div id="result"> Hello Ben, welcome to my dice rolling generator! Press the button to roll the dice!</div>
 <p id="playerRollText">Player rolled: </p>
 <p id="aiRollText">AI rolled: </p>
-
-<!-- Scoreboard to keep it competitive -->
 <div>
   <p id="playerScoreText">Player Score: 0</p>
   <p id="aiScoreText">AI Score: 0</p>
   <p id="drawText">Draws: 0</p>
 </div>
-
-<!-- Button to roll the dice, let’s go! -->
 <button id="rollButton">Roll the Dice</button>
+
+<!-- New button and message -->
+<p>Click the button to see if I'm gonna go for the VG with the cookies!</p>
+<button id="showGifButton">Find out ;)</button>
+
+<div id="gifContainer">
+  <img id="gif" src="https://media.tenor.com/-kzM7lTZTi8AAAAM/i-dont-think-så-i-dont-think-so.gif" alt="You thought? GIF">
+</div>
 
 <script src="script.js"></script>
 </body>
 </html>
+

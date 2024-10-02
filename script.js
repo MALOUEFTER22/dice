@@ -1,46 +1,86 @@
-// Keeping track of scores like a boss
+// VARIABLES
+let result = document.getElementById('result');
+let button0 = document.getElementById("rollButton"); // Updated to match the button ID
+let playerRollText = document.getElementById("playerRollText");
+let aiRollText = document.getElementById("aiRollText");
+let scoreboardDraw = document.getElementById("drawText");
+let scoreboardPlayer = document.getElementById("playerScoreText");
+let scoreboardAi = document.getElementById("aiScoreText");
+
+// Data
+let playerRoll = 0;
+let aiRoll = 0;
 let playerScore = 0;
+let ties = 0;
 let aiScore = 0;
-let draws = 0;
 
-// Grab all the elements we need
-let resultText = document.getElementById('result');
-let playerRollText = document.getElementById('playerRollText');
-let aiRollText = document.getElementById('aiRollText');
-let playerScoreText = document.getElementById('playerScoreText');
-let aiScoreText = document.getElementById('aiScoreText');
-let drawText = document.getElementById('drawText');
+// PROCESSES
+loadGame();
+updateScoreboard();
 
-// Roll the dice, baby!
-function rollDice() {
-  return Math.floor(Math.random() * 6) + 1;  // Dice gives us 1-6
+button0.addEventListener("click", function () {
+  getRandomNumberOneToSixForPlayer();
+  getRandomNumberOneToSixForAi();
+  showPlayerRollResult();
+  showAiRollResult();
+  evaluate();
+  updateScoreboard();
+  saveGame();
+});
+
+// CONTROLLERS
+function getRandomNumberOneToSixForPlayer() {
+  playerRoll = Math.floor(Math.random() * 6) + 1;
 }
 
-// When the button gets clicked, it's game time!
-document.getElementById('rollButton').addEventListener('click', function() {
-  // Roll the dice for player and AI
-  let playerRoll = rollDice();
-  let aiRoll = rollDice();
+function getRandomNumberOneToSixForAi() {
+  aiRoll = Math.floor(Math.random() * 6) + 1;
+}
 
-  // Show result of what we rolled
-  playerRollText.innerText = 'Player rolled: ' + playerRoll;
-  aiRollText.innerText = 'AI rolled: ' + aiRoll;
-
-  // Who's winning? Let’s find out!
+function evaluate() {
   if (playerRoll > aiRoll) {
     playerScore++;
-    resultText.innerText = 'You win this round! 🎉';
-  } else if (aiRoll > playerRoll) {
+    result.innerText = "Result: Player wins!";
+  } else if (playerRoll < aiRoll) {
     aiScore++;
-    resultText.innerText = 'AI takes this one. 😢';
+    result.innerText = "Result: AI wins!";
   } else {
-    draws++;
-    resultText.innerText = "It's a tie! 😎";
+    ties++;
+    result.innerText = "Result: It's a draw!";
   }
+}
 
-  // Update the scoreboard so we know who’s the champ
-  playerScoreText.innerText = 'Player Score: ' + playerScore;
-  aiScoreText.innerText = 'AI Score: ' + aiScore;
-  drawText.innerText = 'Draws: ' + draws;
+// VIEWS
+function showPlayerRollResult() {
+  playerRollText.innerText = "Player Roll: " + playerRoll;
+}
+
+function showAiRollResult() {
+  aiRollText.innerText = "AI Roll: " + aiRoll;
+}
+
+function updateScoreboard() {
+  scoreboardPlayer.innerText = "Player Score: " + playerScore;
+  scoreboardAi.innerText = "AI Score: " + aiScore;
+  scoreboardDraw.innerText = "Draws: " + ties;
+}
+
+// GIF DISPLAY
+let showGifButton = document.getElementById("showGifButton");
+let gifContainer = document.getElementById("gifContainer");
+
+showGifButton.addEventListener("click", function() {
+  gifContainer.style.display = "flex"; // Show the GIF container
 });
+
+// Load game function (optional, implement as needed)
+function loadGame() {
+  // You can add code here to load previous scores if necessary
+}
+
+// Save game function (optional, implement as needed)
+function saveGame() {
+  // You can add code here to save scores if necessary
+}
+
 
